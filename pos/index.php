@@ -232,7 +232,8 @@ include('../session.php');
         <center> Do you want to print receipt ? </center>
         <br>
         <br>
-        <input type="hidden" id="datacart01" class="search-input">
+        <input type="hidden" id="itemcode" class="search-input">
+
         <center> 
             <button class="checkout-button" id="printReceiptButton"> Proceed </button>
             <br>

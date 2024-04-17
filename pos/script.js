@@ -337,9 +337,9 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle success response
                 console.log(response);
-                resetInputs();
+                
                 success();
-            
+          
                
             },
             error: function(xhr, status, error) {
@@ -364,14 +364,17 @@ $(document).ready(function() {
 
 function showReceipt() {
     const receiptOverlay = document.getElementById('receipt-overlay'); // Get the receipt overlay element
-   
+
+    // Get the value of the input field by its ID
+    const transNo = document.getElementById('trans1').value;
+
+    // Paste the value into the input field with ID "itemcode"
+    document.getElementById('itemcode').value = transNo;
 
     // Display the receipt overlay
     receiptOverlay.style.display = 'block';
-
-    // Add event listener to close button
-   
 }
+
 
 
 
@@ -412,5 +415,6 @@ function showReceipt() {
     setTimeout(function() {
         receiptOverlay.style.display = 'none';
           showReceipt();
+            resetInputs();
     }, 3000); // 3000 milliseconds = 3 seconds
 }
