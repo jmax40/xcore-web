@@ -229,24 +229,21 @@ include('../session.php');
 
 <div id="receipt-overlay" class="receipt-overlay" style="display: none;">
     <div class="receipt-overlay-content">
-        <center> Do you want to print receipt ? </center>
-        <br>
-        <br>
-        <input type="hidden" id="itemcode" class="search-input">
-
-        <center> 
-            <button class="checkout-button" id="printReceiptButton"> Proceed </button>
+        <form action="receipt.php" method="GET">
+            <center> Do you want to print receipt ? </center>
             <br>
-             <br>
-             <center> Press " Esc " to Cancel Receipt </center>
-          
-        
+            <br>
+            <input type="text" id="itemcode" name="id" class="search-input">
 
-        </center>
+            <center> 
+                <button type="submit" class="checkout-button" id="printReceiptButton"> Proceed </button>
+                <br>
+                <br>
+                <center> Press " Esc " to Cancel Receipt </center>
+            </center>
+        </form>
     </div>
 </div>
-
-
 
 
 
