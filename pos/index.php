@@ -214,7 +214,8 @@ include('../session.php');
 
                <br>
 
-               <input  type="hidden" id="datacart01" class="search-input">
+               
+
 
         <center>  <button class="checkout-button" > Close </button>  </center>
 
@@ -227,13 +228,22 @@ include('../session.php');
 
 
 
+
+
+
+
+
+
+
+
+
 <div id="receipt-overlay" class="receipt-overlay" style="display: none;">
     <div class="receipt-overlay-content">
-        <form action="receipt.php" method="GET">
+        <form action="receipt.php" method="GET" target="_blank">
             <center> Do you want to print receipt ? </center>
             <br>
             <br>
-            <input type="text" id="itemcode" name="id" class="search-input">
+            <input type="hidden" id="itemcode" name="id" class="search-input">
 
             <center> 
                 <button type="submit" class="checkout-button" id="printReceiptButton"> Proceed </button>
@@ -244,6 +254,7 @@ include('../session.php');
         </form>
     </div>
 </div>
+
 
 
 
@@ -276,6 +287,26 @@ include('../session.php');
 
 
 
+
+
+
+
+
+<div id="cart-error" class="cart-error" style="display: none;">
+     <div class="cart-error-content">
+    
+      <center>
+         Note: Make sure Transaction and Customer are not empty
+         <br>
+
+         <img src="../img/error.gif" alt="Success Image">
+<br>
+<button class="checkout-button" id="errorcheck" onclick="errorhide();"> Ok </button>
+
+      </center>
+       
+    </div>
+</div>
 
 
 
@@ -329,15 +360,40 @@ include('../session.php');
 
 
 
+
+  <div id="overlaycart3" class="overlaycart3" style="display: none;">
+        <div id="overlaycart-content3" class="overlaycart-content3">
+          
+
+        <center>  <button class = "pos-button" > Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
+        <br>
+        <center>  <button class = "pos-button" > Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
+              <br>
+        <center>  <button class = "pos-button" > Apply </button> Void item(s): <input class="search-input" id="data022" value = "1" type="number"></center>
+
+               <br>
+
+               <input  type="hidden" id="itemcode01" class="search-input">
+
+        <center>  <button class="checkout-button" > Close </button>  </center>
+
+
+        </div>
+      </div>
+
+
+
+
+
+
 <div id="overlaycart" class="overlaycart" style="display: none;">
   <div id="overlaycart-content" class="overlaycart-content">
     <input type="text" id="searchInput" class="search-input-pick" placeholder="Search...">
 
-
     <br>
     <hr>
     <br>
-    <table id="data-table-cart">
+    <table id="table-list">
       <thead>
       <tr>
       <th>Itemcode</th>

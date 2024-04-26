@@ -261,12 +261,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const specificTable = document.getElementById('table-cart'); // Get the specific table element
-  const closeButton = document.querySelector('#overlaycart2 .checkout-button'); // Get the close button inside the overlay
+    const closeButton = document.querySelector('#overlaycart2 .checkout-button'); // Get the close button inside the overlay
 
     // Event listener to show overlaycart2 when clicking on a cell within the specific table
     specificTable.addEventListener('click', function(event) {
         const target = event.target;
         if (target.tagName === 'TD') {
+
+
+
+                   // Update itemcode01 value
+            const transNo = document.getElementById('trans1').value;
+            const customer = document.getElementById('customer1').value;
+
+            // Check if transNo and customer are empty
+            if (transNo.trim() === '' || customer.trim() === '') {
+                errorshow();
+                return; // Exit the function if fields are empty
+            }
             // Show overlaycart2
             overlaycart2.style.display = 'block';
 
@@ -290,6 +302,87 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const tablelist = document.getElementById('overlaycart');
+    const specificTable = document.getElementById('table-list'); // Get the specific table element
+    const closeButton = document.querySelector('#overlaycart3 .checkout-button');
+
+    // Event listener to show overlaycart3 when clicking on a cell within the specific table
+    specificTable.addEventListener('click', function(event) {
+        const target = event.target;
+        if (target.tagName === 'TD') {
+            // Update itemcode01 value
+            const transNo = document.getElementById('trans1').value;
+            const customer = document.getElementById('customer1').value;
+
+            // Check if transNo and customer are empty
+            if (transNo.trim() === '' || customer.trim() === '') {
+               errorshow();
+                return; // Exit the function if fields are empty
+            }
+
+            document.getElementById('itemcode01').value = transNo;
+
+            // Show overlaycart3
+            overlaycart3.style.display = 'block';
+
+            // Get content of the clicked cell
+            const cart001 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
+
+            // Assign the content to respective overlay elements
+            document.getElementById('datacart001').value = cart001;
+        }
+    });
+
+    // Event listener for the close button in overlaycart3
+    closeButton.addEventListener('click', function() {
+        // Hide overlaycart3
+        overlaycart3.style.display = 'none';
+        // Show overlaycart
+        tablelist.style.display = 'block';
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -325,6 +418,9 @@ function resetInputs() {
 }
 
 
+
+
+
 $(document).ready(function() {
     // Define the checkout function outside of the $(document).ready() function
     function checkout() {
@@ -337,10 +433,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle success response
                 console.log(response);
-                
                 success();
-          
-               
             },
             error: function(xhr, status, error) {
                 // Handle error response
@@ -352,7 +445,17 @@ $(document).ready(function() {
 
     // Bind the checkout function to the click event of the button with ID checkout
     $('#checkout').click(function() {
-        checkout();
+        // Check if the table has any rows
+        if ($('#table-list tbody tr').length > 0) {
+            // Check if trans1 and customer1 are empty
+            if ($('#trans1').val() === '' || $('#customer1').val() === '') {
+                errorshow();
+            } else {
+                checkout();
+            }
+        } else {
+            errorshow();
+        }
     });
 });
 
@@ -418,3 +521,25 @@ function showReceipt() {
             resetInputs();
     }, 3000); // 3000 milliseconds = 3 seconds
 }
+
+
+
+// Function to handle the error message overlay
+function errorhide() {
+    const errorOverlay = document.getElementById('cart-error');
+
+  errorOverlay.style.display = 'none';
+  
+}
+
+
+// Function to handle the error message overlay
+function errorshow() {
+    const errorOverlay = document.getElementById('cart-error');
+
+  errorOverlay.style.display = 'block';
+  
+}
+
+// Call the error function to display the error overlay
+

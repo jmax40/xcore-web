@@ -8,7 +8,7 @@
         dataType: 'json',
         success: function(data) {
           // Clear existing table rows
-          $('#data-table-cart tbody').empty();
+          $('#table-list tbody').empty();
 
           // Populate table with new data
           $.each(data, function(index, row) {
@@ -16,7 +16,7 @@
             $.each(row, function(key, value) {
               tr.append($('<td>').text(value));
             });
-            $('#data-table-cart tbody').append(tr);
+            $('#table-list tbody').append(tr);
           });
         },
         error: function(xhr, status, error) {
@@ -31,4 +31,13 @@
     // Set interval to fetch data and update table every 5 seconds
     setInterval(fetchDataAndUpdateTable, 2000);
   });
+
+
+
+
+
+
+
+
+
 

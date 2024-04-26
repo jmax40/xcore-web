@@ -2,6 +2,11 @@
 // Include TCPDF library
 require_once 'TCPDF-main/tcpdf.php';
 
+
+session_start(); // Start the session
+include('../session.php');
+
+
 // Assuming you have already connected to your database
 $servername = "localhost";
 $username = "root";
@@ -21,6 +26,21 @@ function validateID($id) {
 if(isset($_GET['id'])) {
     // Sanitize the input to prevent SQL injection
     $id = $_GET['id'];
+
+
+// Set the timezone to UTC
+date_default_timezone_set('UTC');
+// Get the current date and time in UTC
+$date = date("m-j-Y");
+$time = date("H:i"); // Use 24-hour format for time
+
+// Add 8 hours to adjust to UTC+08
+$time = date("g:i A", strtotime($time) + 17 * 3600);
+
+
+
+
+
 
     // Validate the ID format
     if(!validateID($id)) {
@@ -59,10 +79,11 @@ if(isset($_GET['id'])) {
         $description = $row['productname'];
         $quantity = $row['qty'];
         $total = $row['total'];
+        $space = " ";
 
         // Append HTML for the item
         $items .= "<div style=\"display: flex; justify-content: space-between;\">
-                        <span style=\"flex-grow: 2;\">$quantity * $description</span> <br>
+                        <span style=\"flex-grow: 2;\">$quantity *&nbsp; $description</span> <br>
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style=\"flex-grow: 1; margin-right: auto;\"> Php$total</span>
                     </div>";
     }
@@ -96,13 +117,17 @@ if(isset($_GET['id'])) {
         </style>
     </head>
     <body>
+
        <img src="../img/xcore.png" alt="Image Description" style="width: 600px; height: auto;">
        <div class="container2">
-           TRANS.CODE: 001 <br>
-           POS CASHER: <br>
-           DATE/TIME: 01-02-2024   10:00 PM  
-           <hr>
+           TRANS.CODE:  '.$id.' <br>
+           POS CASHER: '.$fullname.'   <br>
+           DATE/TIME: '.$date.' '.$time.' <hr>
+        Qty | Description | Total <hr>
        </div>
+
+
+
 
        '.$items.'
 

@@ -638,31 +638,82 @@ button {
   overflow-y: auto; /* Add scroll if content overflows */
 }
 
+
+
+
+
+
+
+
+
 /* Additional styles for the button */
 
-#data-table-cart {
-  margin-left: 0%;
-  border-collapse: collapse;
-  width: 1000px; /* Adjust width as needed */
+#overlaycart3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+    z-index: 999999; /* Higher z-index */
+    display: none; /* Initially hidden */
 }
 
-#data-table-cart th,
-#data-table-cart td {
-  border: 1px solid #dddddd; /* Add borders to table cells */
-  padding: 8px; /* Add padding to table cells */
-  text-align: left; 
-  color: aqua;/* Align text to the left in table cells */
+#overlaycart-content3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(37, 36, 36);
+    padding: 20px;
+    color: white;
+    border: 2px solid transparent; /* Set border color to transparent */
+    border-radius: 10px; /* Add border radius for rounded corners */
+    box-shadow: 0 0 10px aqua; /* Add neon glow effect */
+    z-index: 10000; /* Higher z-index */
 }
 
-#data-table-cart th {
-  background-color: #333 ; /* Background color for table header */
-  color: #f2f2f2; /* Text color for table header */
+
+
+
+#table-list {
+    margin-left: 0%;
+    border-collapse: collapse;
+    width: 1000px;
+    position: relative; /* Ensure it has a position set */
+    z-index: 1; /* Lower z-index */
+}
+
+#table-list th,
+#table-list td {
+    border: 1px solid #dddddd; /* Add borders to table cells */
+    padding: 8px; /* Add padding to table cells */
+    text-align: left;
+    color: aqua; /* Align text to the left in table cells */
+}
+
+#table-list th {
+    background-color: #333; /* Background color for table header */
+    color: #f2f2f2; /* Text color for table header */
 }
 
 /* Hover effect for table rows */
-#data-table-cart tr:hover {
-  background-color: rgb(28, 132, 158); /* Change background color on hover */
+#table-list tr:hover {
+    background-color: rgb(28, 132, 158); /* Change background color on hover */
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .limit-span {
@@ -697,6 +748,8 @@ button {
   border-radius: 10px; /* Add border radius for rounded corners */
   box-shadow: 0 0 10px aqua; /* Add neon glow effect */
 }
+
+
 
 
 
@@ -753,7 +806,7 @@ button {
 
   
 
-.success-overlay-content, .cart-overlay-content {
+.success-overlay-content, .cart-overlay-content, .cart-error-content {
    position: absolute;
   top: 50%;
   left: 50%;

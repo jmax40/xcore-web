@@ -24,7 +24,7 @@ if(isset($id)) {
     // Check if query was successful
     if ($result) {
         // Fetch the row
-        $row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result);   
 
         // Check if a row is found
         if ($row) {
