@@ -171,6 +171,10 @@ include('../session.php');
 
     <button class="search-button"><i class="fas fa-search"></i></button>
     <input type="text" class="search-input" placeholder="Search...">
+
+  <button class="search-button"><i class="fas fa-barcode"></i></button>
+<input type="text" class="search-input" placeholder="Generate Barcode">
+
   
     
 </div>
@@ -190,6 +194,8 @@ include('../session.php');
       <th>Qty</th>
       <th>Unit Price</th>
       <th>Total</th>
+      <th>Discount</th>
+    </tr>
     </tr>
   </thead>
   <tbody><!-- Add the opening tbody tag -->
@@ -331,10 +337,10 @@ include('../session.php');
 
 
 
-
 <div id="overlay" class="overlay" style="display: none;">
   <div id="overlay-content" class="overlay-content">
     <input type="text" id="searchInput" class="search-input-pick" placeholder="Search...">
+
     <br>
     <hr>
     <br>
@@ -401,6 +407,7 @@ include('../session.php');
       <th>Qty</th>
       <th>Unit Price</th>
       <th>Total</th>
+       <th>Dicount</th>
     </tr>
       </thead>
       <tbody><!-- Add the opening tbody tag -->

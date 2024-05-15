@@ -617,6 +617,7 @@ button {
 
 /* Your existing CSS code */
 .overlaycart {
+
   position: fixed;
   top: 0;
   left: 0;
@@ -625,9 +626,12 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   display: none;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+
 .overlaycart-content {
+
   position: absolute;
   top: 50%;
   left: 50%;
@@ -636,6 +640,7 @@ button {
   padding: 20px;
   max-height: 80%; /* Adjust as needed */
   overflow-y: auto; /* Add scroll if content overflows */
+
 }
 
 

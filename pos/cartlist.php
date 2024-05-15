@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 
 // Fetch data from the database for the specific ID
-$sql = "SELECT itemcode, productname, qty, price, total FROM purchaseitem WHERE status = 'IN' AND casher = '$fullname' ORDER BY ID ";
+$sql = "SELECT itemcode, productname, qty, price, total, discount FROM purchaseitem WHERE status = 'IN' AND casher = '$fullname' ORDER BY ID ";
 $result = $conn->query($sql);
 
 $data = array();

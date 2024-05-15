@@ -73,7 +73,7 @@ searchInput.addEventListener('keyup', function(event) {
             }
         } else {
             // If either trans2 or customer2 is empty, show alert
-            alert(" Note: Transaction Number and Customer are Empty. ");
+            errorshow();
         }
     }
 });
