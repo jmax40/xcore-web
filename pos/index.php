@@ -60,24 +60,23 @@ include('../session.php');
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a href="#">Retail</a></li>
+          <li><a href="#">Wholesale</a></li>
         </ul>
       </li>
       <li>
         <div class="iocn-link">
           <a href="#">
             <i class='bx bx-book-alt' ></i>
-            <span class="link_name">Posts</span>
+            <span class="link_name">Note</span>
           </a>
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Posts</a></li>
-          <li><a href="#">Web Design</a></li>
-          <li><a href="#">Login Form</a></li>
-          <li><a href="#">Card Design</a></li>
+          <li><a class="link_name" href="#">Note</a></li>
+          <li><a href="#">Sales Report</a></li>
+          <li><a href="#">Balanced</a></li>
+          <li><a href="#">Customer</a></li>
         </ul>
       </li>
       <li>
@@ -107,30 +106,14 @@ include('../session.php');
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Plugins</a></li>
-          <li><a href="#">UI Face</a></li>
-          <li><a href="#">Pigments</a></li>
-          <li><a href="#">Box Icons</a></li>
+          <li><a class="link_name" href="#">Report</a></li>
+          <li><a href="#">Cash Drop</a></li>
+          <li><a href="#">End of Shift</a></li>
+          <li><a href="#">Check Receipt</a></li>
         </ul>
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-compass' ></i>
-          <span class="link_name">Explore</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Explore</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-history'></i>
-          <span class="link_name">History</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">History</a></li>
-        </ul>
-      </li>
+   
+    
       <li>
         <a href="#">
           <i class='bx bx-cog' ></i>
@@ -208,28 +191,6 @@ include('../session.php');
 
 
 
-    <div id="overlaycart2" class="overlaycart2" style="display: none;">
-        <div id="overlaycart-content2" class="overlaycart-content2">
-          
-
-        <center>  <button class = "pos-button" > Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
-        <br>
-        <center>  <button class = "pos-button" > Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
-              <br>
-        <center>  <button class = "pos-button" > Apply </button> Void item(s): <input class="search-input" id="data022" value = "1" type="number"></center>
-
-               <br>
-
-               
-
-
-        <center>  <button class="checkout-button" > Close </button>  </center>
-
-
-        </div>
-      </div>
-
-
 
 
 
@@ -293,6 +254,17 @@ include('../session.php');
 
 
 
+<div id="void-overlay" class="void-overlay" style="display: none;">
+
+     <div class="void-overlay-content">
+      <center>
+          Void Successfully! <br>
+         Note: This process will be sent to admin. Your verification are needed.   <br>
+         <img src="../img/list_completed.gif" alt="Success Image">
+      </center>
+       <button class="checkout-button" id="errorcheck" onclick="voidhide();"> Ok </button>
+    </div>
+</div>
 
 
 
@@ -365,27 +337,72 @@ include('../session.php');
 
 
 
+    <div id="overlaycart2" class="overlaycart2" style="display: none;">
+        <div id="overlaycart-content2" class="overlaycart-content2">
+          
+
+     <input  class="search-input"   type="text" id = "itemscode1" readonly>
+
+
+
+        <center>  <button class = "pos-button" onclick="discountpercent(event);"> Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
+        <br>
+        <center>  <button class = "pos-button" onclick="discountprice(event);"> Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
+              <br>
+        <center> 
+         <button class = "pos-button" onclick="voiditems1();"> Apply </button> 
+         Void item(s): <input class="search-input" id="void1" value = "1" type="number">
+       </center>
+
+
+
+               <br>
+        
+        <center>  <button id = "buttonvoid"class="checkout-button" > Close </button>  </center>
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
 
 
   <div id="overlaycart3" class="overlaycart3" style="display: none;">
         <div id="overlaycart-content3" class="overlaycart-content3">
           
 
-        <center>  <button class = "pos-button" > Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
+          <input class="search-input" type="text" id="itemscode2" readonly>
+
+        <center>  <button class = "pos-button" onclick="discountpercent(event);" > Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
         <br>
-        <center>  <button class = "pos-button" > Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
+        <center>  <button class = "pos-button" onclick="discountprice(event);" > Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
               <br>
-        <center>  <button class = "pos-button" > Apply </button> Void item(s): <input class="search-input" id="data022" value = "1" type="number"></center>
+        <center>
+        <button class="pos-button" onclick="voiditems2();">Apply</button>
+        Void item(s): <input class="search-input" id="void2" value="1" type="number">
+        </center>
 
                <br>
 
                <input  type="hidden" id="itemcode01" class="search-input">
 
-        <center>  <button class="checkout-button" > Close </button>  </center>
+        <center>  <button id = "buttonvoid" class="checkout-button" > Close </button>  </center>
 
 
         </div>
       </div>
+
+
+
+
+
+
+
 
 
 
@@ -705,10 +722,6 @@ $(document).ready(function() {
 </center>
 
 </div>
-
-
-
-
 
 
 

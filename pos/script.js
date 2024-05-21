@@ -262,15 +262,13 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const specificTable = document.getElementById('table-cart'); // Get the specific table element
     const closeButton = document.querySelector('#overlaycart2 .checkout-button'); // Get the close button inside the overlay
+    const overlaycart2 = document.getElementById('overlaycart2'); // Ensure overlaycart2 is selected
 
     // Event listener to show overlaycart2 when clicking on a cell within the specific table
     specificTable.addEventListener('click', function(event) {
         const target = event.target;
         if (target.tagName === 'TD') {
-
-
-
-                   // Update itemcode01 value
+            // Update itemcode01 value
             const transNo = document.getElementById('trans1').value;
             const customer = document.getElementById('customer1').value;
 
@@ -279,29 +277,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorshow();
                 return; // Exit the function if fields are empty
             }
+
             // Show overlaycart2
             overlaycart2.style.display = 'block';
 
             // Get content of the clicked cell
-            const cart01 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
-    // Get content of the fourth cell in the clicked row
+            const cart001 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
 
             // Assign the content to respective overlay elements
-            datacart01.value = cart01;
-         // Assuming selling price is also set to cell4Content, you may adjust this as needed
+            document.getElementById('itemscode1').value = cart001; // Assuming itemsid is the ID of the input field to display cart001
         }
     });
-
-
-
 
     closeButton.addEventListener('click', function() {
         overlaycart2.style.display = 'none'; // Hide the overlay
     });
-
-
-
 });
+
 
 
 
@@ -346,10 +338,10 @@ document.addEventListener('DOMContentLoaded', function() {
             overlaycart3.style.display = 'block';
 
             // Get content of the clicked cell
-            const cart001 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
+          const cart001 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
 
             // Assign the content to respective overlay elements
-            document.getElementById('datacart001').value = cart001;
+            document.getElementById('itemscode2').value = cart001; 
         }
     });
 
@@ -527,6 +519,11 @@ function showReceipt() {
 // Function to handle the error message overlay
 function errorhide() {
     const errorOverlay = document.getElementById('cart-error');
+  
+
+
+
+    
 
   errorOverlay.style.display = 'none';
   
@@ -541,5 +538,103 @@ function errorshow() {
   
 }
 
-// Call the error function to display the error overlay
 
+
+function voidshow() {
+    const voiddisplay = document.getElementById('void-overlay');
+    const voiddisplay2 = document.getElementById('overlaycart2');
+    const voiddisplay3 = document.getElementById('overlaycart3');
+    const voiddisplay4 = document.getElementById('overlaycart');
+
+
+  voiddisplay.style.display = 'block';
+  voiddisplay2.style.display = 'none';
+  voiddisplay3.style.display = 'none';
+   voiddisplay4.style.display = 'none';
+
+
+  
+}
+
+
+function voidhide() {
+    const voiddisplay = document.getElementById('void-overlay');
+
+  voiddisplay.style.display = 'none';
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function voiditems1() {
+    const itemscode = document.getElementById('itemscode1').value; // Correctly fetching the value
+    const voidQuantity = document.getElementById('void1').value; // Correctly fetching the value
+
+    $.ajax({
+        url: 'void.php',
+        type: 'POST',
+        data: {
+            itemscode: itemscode,
+            voidQuantity: voidQuantity
+        },
+        success: function(response) {
+            // Show success alert
+            voidshow();
+        },
+        error: function(xhr, status, error) {
+            // Show error alert
+            alert('Failed to void items. Error: ' + error);
+        }
+    });
+}
+
+
+
+function voiditems2() {
+    const itemscode = document.getElementById('itemscode2').value; // Correctly fetching the value
+    const voidQuantity = document.getElementById('void2').value; // Correctly fetching the value
+
+    $.ajax({
+        url: 'void.php',
+        type: 'POST',
+        data: {
+            itemscode: itemscode,
+            voidQuantity: voidQuantity
+        },
+        success: function(response) {
+            // Show success alert
+            voidshow();
+        },
+        error: function(xhr, status, error) {
+            // Show error alert
+            alert('Failed to void items. Error: ' + error);
+        }
+    });
+}
+
+
+
+
+
+
+function discountprice(event){
+
+    alert("Dicount price Completed!");
+}
+
+
+function discountpercent(event){
+
+    alert("Discount percent Completed");
+}

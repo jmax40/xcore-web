@@ -798,7 +798,7 @@ button {
 
 
 /* Your existing CSS code */
-.success-overlay, .cart-overlay  {
+.success-overlay, .cart-overlay, .void-overlay{
  position: fixed;
   top: 0;
   left: 0;
@@ -811,7 +811,7 @@ button {
 
   
 
-.success-overlay-content, .cart-overlay-content, .cart-error-content {
+.success-overlay-content, .cart-overlay-content, .cart-error-content, .void-overlay-content {
    position: absolute;
   top: 50%;
   left: 50%;
@@ -824,6 +824,9 @@ button {
   border-radius: 10px; /* Add border radius for rounded corners */
   box-shadow: 0 0 30px aqua; /* Add scroll if content overflows */
 }
+
+
+
 
 
 
