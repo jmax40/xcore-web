@@ -337,17 +337,19 @@ include('../session.php');
 
 
 
+
     <div id="overlaycart2" class="overlaycart2" style="display: none;">
         <div id="overlaycart-content2" class="overlaycart-content2">
           
 
-     <input  class="search-input"   type="text" id = "itemscode1" readonly>
+     <input  class="search-input"   type="hidden" id = "itemscode1" readonly>
+       <input class="search-input" type="hidden" id="price1" readonly>
 
 
 
-        <center>  <button class = "pos-button" onclick="discountpercent(event);"> Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
+        <center>  <button class = "pos-button" onclick="discountpercent1();"> Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
         <br>
-        <center>  <button class = "pos-button" onclick="discountprice(event);"> Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
+        <center>  <button class = "pos-button" onclick="discountprice1();"> Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
               <br>
         <center> 
          <button class = "pos-button" onclick="voiditems1();"> Apply </button> 
@@ -357,8 +359,14 @@ include('../session.php');
 
 
                <br>
-        
-        <center>  <button id = "buttonvoid"class="checkout-button" > Close </button>  </center>
+
+                  
+
+                    
+      
+        <center>  <button id = "buttonvoid" class="checkout-button" > Close </button>  </center>
+        <br>
+          <center>  <button class="checkout-button" > Remove </button>  </center>
 
 
         </div>
@@ -376,11 +384,12 @@ include('../session.php');
         <div id="overlaycart-content3" class="overlaycart-content3">
           
 
-          <input class="search-input" type="text" id="itemscode2" readonly>
+          <input class="search-input" type="hidden" id="itemscode2" readonly>
+            <input class="search-input" type="hidden" id="price2" readonly>
 
-        <center>  <button class = "pos-button" onclick="discountpercent(event);" > Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
+        <center>  <button class = "pos-button" onclick="discountpercent2();" > Apply </button> Discount (%):  <input  class="search-input"  id="data011" type="number"></center>
         <br>
-        <center>  <button class = "pos-button" onclick="discountprice(event);" > Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
+        <center>  <button class = "pos-button" onclick="discountprice2();" > Apply </button> Discount (P): <input class="search-input" id="data022" type="text"></center>
               <br>
         <center>
         <button class="pos-button" onclick="voiditems2();">Apply</button>
@@ -392,6 +401,7 @@ include('../session.php');
                <input  type="hidden" id="itemcode01" class="search-input">
 
         <center>  <button id = "buttonvoid" class="checkout-button" > Close </button>  </center>
+    
 
 
         </div>
@@ -624,7 +634,7 @@ $(document).ready(function() {
 
     <div class="right-container">
         <!-- Content for right container goes here -->
-<div class="basic"> Trans. No: <input type = "text" id="trans1" class="search-input-pick">   </div>
+<div class="basic"> Trans. No: <input type = "text" id="trans1" class="search-input-pick" >   </div>
 
 
 <br>

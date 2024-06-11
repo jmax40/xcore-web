@@ -229,6 +229,8 @@ updatePrice();
 
 
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Event listener for toggling menu items
     let arrow = document.querySelectorAll(".arrow");
@@ -282,10 +284,12 @@ document.addEventListener('DOMContentLoaded', function() {
             overlaycart2.style.display = 'block';
 
             // Get content of the clicked cell
-            const cart001 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
+            const cart001 = target.parentNode.cells[0].textContent.trim();
+             const price = target.parentNode.cells[3].textContent.trim(); // Get content of the first cell in the clicked row
 
             // Assign the content to respective overlay elements
-            document.getElementById('itemscode1').value = cart001; // Assuming itemsid is the ID of the input field to display cart001
+            document.getElementById('itemscode1').value = cart001;
+             document.getElementById('price1').value = price; // Assuming itemsid is the ID of the input field to display cart001
         }
     });
 
@@ -338,10 +342,13 @@ document.addEventListener('DOMContentLoaded', function() {
             overlaycart3.style.display = 'block';
 
             // Get content of the clicked cell
-          const cart001 = target.parentNode.cells[0].textContent.trim(); // Get content of the first cell in the clicked row
+          const cart001 = target.parentNode.cells[0].textContent.trim(); 
+          const price = target.parentNode.cells[3].textContent.trim();// Get content of the first cell in the clicked row
 
             // Assign the content to respective overlay elements
-            document.getElementById('itemscode2').value = cart001; 
+            document.getElementById('itemscode2').value = cart001;
+              document.getElementById('price2').value = price;
+
         }
     });
 
@@ -580,13 +587,14 @@ function voidhide() {
 function voiditems1() {
     const itemscode = document.getElementById('itemscode1').value; // Correctly fetching the value
     const voidQuantity = document.getElementById('void1').value; // Correctly fetching the value
-
+   const price = document.getElementById('price1').value;
     $.ajax({
         url: 'void.php',
         type: 'POST',
         data: {
             itemscode: itemscode,
-            voidQuantity: voidQuantity
+            voidQuantity: voidQuantity,
+            price: price
         },
         success: function(response) {
             // Show success alert
@@ -598,19 +606,24 @@ function voiditems1() {
         }
     });
 }
+
+
+
 
 
 
 function voiditems2() {
+
     const itemscode = document.getElementById('itemscode2').value; // Correctly fetching the value
     const voidQuantity = document.getElementById('void2').value; // Correctly fetching the value
-
+    const price = document.getElementById('price2').value;
     $.ajax({
         url: 'void.php',
         type: 'POST',
         data: {
             itemscode: itemscode,
-            voidQuantity: voidQuantity
+            voidQuantity: voidQuantity,
+            price: price
         },
         success: function(response) {
             // Show success alert
@@ -621,6 +634,9 @@ function voiditems2() {
             alert('Failed to void items. Error: ' + error);
         }
     });
+
+
+
 }
 
 
@@ -628,13 +644,35 @@ function voiditems2() {
 
 
 
-function discountprice(event){
+function discountprice1(){
+ 
+    const itemscode = document.getElementById('itemscode1').value; // Correctly fetching the value
+    const discountprice = document.getElementById('data022').value; // Correctly fetching the value
 
-    alert("Dicount price Completed!");
+    $.ajax({
+        url: 'discount.php',
+        type: 'POST',
+        data: {
+            itemscode: itemscode,
+            discountprice: discountprice
+        },
+        success: function(response) {
+            // Show success alert
+            voidshow();
+        },
+        error: function(xhr, status, error) {
+            // Show error alert
+            alert('Failed to void items. Error: ' + error);
+        }
+    });
+  
 }
 
 
-function discountpercent(event){
+
+
+
+function discountpercent(){
 
     alert("Discount percent Completed");
 }
